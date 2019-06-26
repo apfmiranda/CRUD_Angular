@@ -1,0 +1,31 @@
+<div class="table-responsive-sm">
+  <table class="table table-sm table-striped table-hover">
+    <caption>List of contacts</caption>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contato of contatos$ | async; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ contato.name }}</td>
+        <td>{{ contato.email }}</td>
+        <td>
+          <select class="custom-select">
+            <option selected>Phones</option>
+            <option *ngFor="let phone of contato.phones">{{ phone }}</option>
+          </select>
+        </td>
+        <td><button type="button" class="btn btn-info btn-sm" (click)="onEdit(contato.id)">Edit</button></td>
+        <td><button type="button" class="btn btn-danger btn-sm" (click)="onDelete(contato.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button class="btn btn-primary btn-sm" type="button" routerLink="/form-contatos">Create contact</button>
